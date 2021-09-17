@@ -4,8 +4,27 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+// Add the .hidden class to the error modal in the HTML so it does not appear when pg loads
+const modal = document.getElementById('modal')
+const likeHeart = document.getElementsByClassName('like-glyph')
 
+modal.className = "hidden"
 
+// When user clicks on an empty heart, Invoke mimicServerCall
+for(const heart of likeHeart) {
+  heart.addEventListener('click', () => {
+    mimicServerCall()
+    .then(() => {
+      heart.className = "activated-heart"
+    })
+    .catch(() => {
+      modal.style.visibility = "visible"
+    })
+  })
+}
+document.addEventListener('DOMContentLoaded', function() {
+  
+})
 
 //------------------------------------------------------------------------------
 // Don't change the code below: this function mocks the server response
